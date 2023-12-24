@@ -64,4 +64,41 @@ class MainController extends Controller {
             return redirect('/')->with('status', 'Insufficient quantity to booked');
         }
     }
+
+    public function delete($id) {
+        $trip = Trip::find($id);
+
+        $hasTrip = SeatAllocation::where('trip_id', $id)->exists();
+
+        if ($hasTrip) {
+            return redirect('/')->with('error', 'Maybe already seat booked for this trip. So you can\'t update or delete this trip');
+        }
+
+        $trip->delete();
+
+        return redirect('/')->with('status', 'Deleted Successfully');
+    }
+
+    public function edit($id) {
+        $trip = trip::find($id);
+        return view('edit', compact('trip'));
+    }
+
+    public function update(Request $request, $id) {
+        $trip = Trip::find($id);
+
+        $hasTrip = SeatAllocation::where('trip_id', $id)->exists();
+
+        if ($hasTrip) {
+            return redirect('/')->with('error', 'Maybe already seat booked for this trip. So you can\'t update or delete this trip');
+        }
+
+        $trip->departure = $request->input('departure');
+        $trip->destination = $request->input('destination');
+        $trip->trip_date = $request->input('trip_date');
+        $trip->trip_time = $request->input('trip_time');
+        $trip->update();
+
+        return redirect('/')->with('status', 'Updated Successfully');
+    }
 }

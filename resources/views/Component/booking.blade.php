@@ -57,11 +57,11 @@
                                 <td scope="col">{{ $trip->trip_date }}</td>
                                 <td scope="col">{{ $trip->remaining_seat }}</td>
                                 <td scope="col">
-                                    <a href="{{ url('choose-seat/' . $trip->id) }}" class="btn btn-primary col-12"
+                                    <a href="{{ url('edit-product/' . $trip->id) }}" class="btn btn-primary col-12"
                                         type="submit">Edit</a>
                                 </td>
                                 <td scope="col">
-                                    <a href="{{ url('choose-seat/' . $trip->id) }}" class="btn btn-primary col-12"
+                                    <a href="{{ url('delete-product/' . $trip->id) }}" class="btn btn-primary col-12"
                                         type="submit">Delete this trip</a>
                                 </td>
                             </tr>

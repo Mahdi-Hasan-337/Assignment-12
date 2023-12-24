@@ -9,7 +9,7 @@
             <a href="#feedback-content-wrapper" class="list-group-item list-group-item-action"><i
                     class="fas fa-comments me-2"></i>Customer</a>
             <a href="#allocation-content-wrapper" class="list-group-item list-group-item-action"><i
-                    class="fas fa-comments me-2"></i>Seat Allocation</a>
+                    class="fas fa-comments me-2"></i>Seat</a>
         </div>
     </div>
 </div>

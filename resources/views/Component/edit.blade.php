@@ -6,9 +6,9 @@
                     <h4 class="text-center">Edit information</h4>
                 </div>
                 <div class="card-body">
-                    <form action="{{ url('book-seat/' . $trip->id) }}" method="POST">
+                    <form action="{{ url('update-product/' . $trip->id) }}" method="POST">
                         @csrf
-
+                        @method('PUT')
                         @php
                             $locationNames = [
                                 1 => 'Dhaka',
@@ -20,43 +20,40 @@
 
                         <div class="form-group mb-3">
                             <label for="departure">Departure Place</label>
-                            <input type="text" name="departure" class="form-control"
-                                value="{{ $locationNames[$trip->departure] ?? $trip->departure }}">
+                            <select name="departure" class="form-control">
+                                @foreach ($locationNames as $key => $name)
+                                    <option value="{{ $key }}"
+                                        @if ($trip->departure == $key) selected @endif>
+                                        {{ $name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="destination">Destination Place</label>
-                            <input type="text" name="destination" class="form-control"
-                                value="{{ $locationNames[$trip->destination] ?? $trip->destination }}">
+                            <select name="destination" class="form-control">
+                                @foreach ($locationNames as $key => $name)
+                                    <option value="{{ $key }}"
+                                        @if ($trip->destination == $key) selected @endif>
+                                        {{ $name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="price">Time</label>
-                            <input type="time" name="unit_price" class="form-control">
+                            <label for="date">Date</label>
+                            <input type="date" name="trip_date" class="form-control" value="{{ $trip->trip_date }}">
                         </div>
 
                         <div class="form-group mb-3">
-                            <label for="price">Date</label>
-                            <input type="date" name="unit_price" class="form-control">
+                            <label for="time">Time</label>
+                            <input type="time" name="trip_time" class="form-control" value="{{ $trip->trip_time }}">
                         </div>
-
-                        {{-- <div class="form-group mb-3">
-                            <label for="quantity">Total Seats</label>
-                            <input type="number" name="quantity" class="form-control">
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="name">Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Enter your name please" required>
-                        </div>
-
-                        <div class="form-group mb-3">
-                            <label for="phone">phone</label>
-                            <input type="text" name="phone" class="form-control" placeholder="Enter your phone number" required>
-                        </div> --}}
 
                         <div class="text-center form-group mb-3">
-                            <button type="submit" class="col-12 btn btn-primary">Confirm your seat</button>
+                            <button type="submit" class="col-12 btn btn-primary">Edit</button>
                         </div>
 
                         <div class="text-center form-group mb-3">
